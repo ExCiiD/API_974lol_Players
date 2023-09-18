@@ -1,5 +1,5 @@
 import express from 'express';	
-import {router} from './routes/playerRoutes.js';
+import { router } from './routers/playerRouter.js';
 import dotenv from 'dotenv';
 import { connectDB } from './db/mongodb.js';
 
