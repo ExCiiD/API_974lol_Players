@@ -3,7 +3,7 @@ import { addPlayer, getPlayer, updatePlayer, deletePlayer } from '../controllers
 export const playerRouter = new express.Router();
 
 //Route pour creer un nouveau joueur
-playerRouter.post('/player', async (req, res) => {
+playerRouter.post('/players', async (req, res) => {
     //controler
     addPlayer(req, res);
 });
@@ -15,13 +15,13 @@ playerRouter.get('/players', async (req, res) => {
 });
 
 //route pour update un joueur
-playerRouter.put('/player/:username', async (req, res) => {
+playerRouter.put('/players/:username', async (req, res) => {
     //controler
     updatePlayer(req, res);
 });
 
 //route pour supprimer un joueur par nom
-playerRouter.delete('/player/:username', async (req, res) => {
+playerRouter.delete('/players/:username', async (req, res) => {
     //controler
     deletePlayer(req, res);
 });

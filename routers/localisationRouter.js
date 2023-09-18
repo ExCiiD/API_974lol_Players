@@ -4,7 +4,7 @@ import { addLocalisation, getLocalisation, deleteLocalisation } from '../control
 export const localisationRouter = new express.Router();
 
 //Route pour creer une nouvelle localisation
-localisationRouter.post('/localisation', async (req, res) => {
+localisationRouter.post('/localisations', async (req, res) => {
     //controler
     addLocalisation(req, res);
 });
@@ -16,7 +16,7 @@ localisationRouter.get('/localisations', async (req, res) => {
 });
 
 //route pour supprimer une localisation
-localisationRouter.delete('/localisation/:id', async (req, res) => {
+localisationRouter.delete('/localisations/:id', async (req, res) => {
     //controler
     deleteLocalisation(req, res);
 });

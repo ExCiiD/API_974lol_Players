@@ -16,13 +16,13 @@ eventRouter.get('/events', async (req, res) => {
 });
 
 //route pour update un evenement
-eventRouter.put('/event/:eventname', async (req, res) => {
+eventRouter.put('/events/:eventname', async (req, res) => {
     //controler
     updateEvents(req, res);
 });
 
 //route pour supprimer un event par nom 
-eventRouter.delete('/event/:eventname', async (req, res) => {
+eventRouter.delete('/events/:eventname', async (req, res) => {
     //appel du controler
     deleteEvents(req, res);
 });
