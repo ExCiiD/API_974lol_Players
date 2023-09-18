@@ -5,11 +5,11 @@ const playerSchema = new mongoose.Schema({
         type: String,
         content: String,
     },
-    LastName: {
+    lastName: {
         type: String,
         content: String,
     },
-    BirthDate: {
+    birthDate: {
         type: Date,
         content: String,
     },
@@ -34,7 +34,7 @@ const playerSchema = new mongoose.Schema({
         content: String,
         required: true,
     },
-    Achievements: {
+    achievements: {
         type: String,
         /* achievement id */
         content: String,
@@ -44,7 +44,7 @@ const playerSchema = new mongoose.Schema({
         /* team id */
         content: String,
     },
-    LastTeams: {
+    lastTeams: {
         type: String,
         /* team id */
         content: String,

@@ -1,15 +1,16 @@
 import mongoose from 'mongoose';
 
 const localisationSchema = new mongoose.Schema({
-    Pays: {
+    country: {
         type: String,
         content: String,
         required: true,
     },
-    Ville: {
+    city: {
         type: String,
         content: String,
+        required: true,
     }
 });
 
-export const localisation = mongoose.model('Localisation', localisationSchema);
+export const Localisation = mongoose.model('Localisation', localisationSchema);

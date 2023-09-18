@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
+import { Team } from './team.js';
 
 const eventSchema = new mongoose.Schema({
     eventCreator: {
-        type: String,/* id de team */
-        content: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Team,
         required: true,
     },
     eventName: {
@@ -16,13 +17,13 @@ const eventSchema = new mongoose.Schema({
         content: String,
         //ajouter un option online / offline(lan) et si offline, donner la localisation
     },
-    Participants: {
-        type: String,
-        content: String,
+    participants: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Team, 
     },
     eventDate: {
-        /* date de l'evenement */
+        Date,
     }
 });
 
-export const event = mongoose.model('Event', eventSchema);
+export const Event = mongoose.model('Event', eventSchema);
