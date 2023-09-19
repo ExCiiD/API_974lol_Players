@@ -13,7 +13,7 @@ export const addEvents = async (req, res) => {
     }
 }
 
-//fonction pour lire un evenement
+//fonction pour recuprer tous les evenement
 export const getEvents = async (req, res) => {
 
     try {
@@ -31,7 +31,7 @@ export const updateEvents = async (req, res) => {
     try {
         const updatedevent = await Event.findOneAndUpdate(
             { eventname: req.params.eventName }, // filtre pour trouver le pseudo du joueur
-            {/*données a mettre a jour*/ },
+            { $set: req.body },
             { new: true } //Cette option renvoie le joueur mis à jour plutôt que l'ancienne version
         )
         if (!updatedevent) {

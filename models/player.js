@@ -1,61 +1,63 @@
 import mongoose from 'mongoose';
+import { Team } from './team.js';
+import { Localisation } from './localisation.js';
 
 const playerSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        content: String,
     },
     lastName: {
         type: String,
-        content: String,
     },
     birthDate: {
         type: Date,
-        content: String,
     },
     playerLocalisation: {
-        /* id localisation ?*/
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Localisation,
     },
     username: {
         type: String,
-        content: String,
         required: true,
     },
     role: {
         type: String,
-        content: String,
     },
     rank: {
         type: String,
-        content: String,
     },
     inGameName: {
         type: String,
-        content: String,
         required: true,
     },
     achievements: {
         type: String,
         /* achievement id */
-        content: String,
     },
     currentTeam: {
-        type: String,
-        /* team id */
-        content: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Team,
     },
     lastTeams: {
-        type: String,
-        /* team id */
-        content: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Team,
     },
     mainChamps: {
         type: String,
         /* champs id? ou juste les nom de champions.*/
-        content: String,
     },
-
-
 });
+
+//MIDDLEWARES///////////////////////////////////////////////
+//middleware qui s'exécute avant (.pre) qu'une requête de recherche (find)(voir controllers , fonction "getplayer") s'execute afin de ne remplir que le "teamName" dans le currentTeam au lieu de l'objectIf donné 
+playerSchema.pre('find', function (next) {
+    this.populate([
+        { path: 'currentTeam', select: 'teamName' },
+        { path: 'lastTeams', select: 'teamName' },
+        { path: 'playerLocalisation' }
+    ]);
+    next();
+});
+//MIDDLEWARES///////////////////////////////////////////////
 
 export const Player = mongoose.model('Player', playerSchema);

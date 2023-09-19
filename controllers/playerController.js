@@ -13,7 +13,7 @@ export const addPlayer = async (req, res) => {
     }
 }
 
-//fonction pour lire un joueur
+//fonction pour recuper et lire tous les joueur
 export const getPlayer = async (req, res) => {
     try {
         const players = await Player.find({})//Player est le nom du modele importé depuis player.js et prend le nom du modele dans la bdd mongo donc on demande a chercher tous les documents en rapport a modele Player
@@ -29,7 +29,7 @@ export const updatePlayer = async (req, res) => {
     try {
         const updatedPlayer = await Player.findOneAndUpdate(
             { username: req.params.username }, // filtre pour trouver le pseudo du joueur
-            {/*données a mettre a jour*/ },
+            { $set: req.body },
             { new: true } //Cette option renvoie le joueur mis à jour plutôt que l'ancienne version
         )
         if (!updatedPlayer) {
