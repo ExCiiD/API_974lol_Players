@@ -52,8 +52,18 @@ const playerSchema = new mongoose.Schema({
 //middleware qui s'exécute avant (.pre) qu'une requête de recherche (find)(voir controllers , fonction "getplayer") s'execute afin de ne remplir que le "teamName" dans le currentTeam au lieu de l'objectIf donné 
 playerSchema.pre('find', function (next) {
     this.populate([
-        { path: 'currentTeam', select: 'teamName' },
-        { path: 'lastTeams', select: 'teamName' },
+        { path: 'currentTeam', select: 'teamName' }
+    ]);
+    next();
+});
+playerSchema.pre('find', function (next) {
+    this.populate([
+        { path: 'lastTeams', select: 'teamName' }
+    ]);
+    next();
+});
+playerSchema.pre('find', function (next) {
+    this.populate([
         { path: 'playerLocalisation' }
     ]);
     next();

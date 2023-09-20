@@ -1,4 +1,5 @@
 import { Player } from "../models/player.js";
+import { Team } from "../models/team.js";
 
 //fonction pour ajouter un joueur
 export const addPlayer = async (req, res) => {
@@ -55,6 +56,22 @@ export const deletePlayer = async (req, res) => {
         res.json({ message: 'Player deleted successfully' });
     }
     catch (err) {
+        res.status(500).send(err);
+    }
+}
+
+//fonction pour obtenir les joueurs appartenant a une équipe 
+export const getPlayersFromTeam = async (req, res) => {
+    //definir l'id de l'equipe voulu
+    const teamId = Team.findById(req.params.teamId);
+    //si l'equipe n'a pas été trouvé 
+    if (!teamId) {
+        return res.status(404).json({ message: "Équipe non trouvée" });
+    }
+    try {
+        const players = await Player.findAll({ where: { currentTeam: teamId } });
+        return res.status(200).json({ status: "SUCCESS", players });
+    } catch (err) {
         res.status(500).send(err);
     }
 }

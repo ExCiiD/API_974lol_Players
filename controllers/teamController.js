@@ -60,7 +60,7 @@ export const deleteTeam = async (req, res) => {
     }
 }
 
-//fonction pour ajouter un joueur titulaire au current roster
+//fonction pour ajouter un joueur au current roster
 export const addPlayerToCurrentRoster = async (req, res) => {
     try {
         // Vérifiez d'abord si l'équipe existe
@@ -83,48 +83,8 @@ export const addPlayerToCurrentRoster = async (req, res) => {
         }
 
         // Ajoutez le joueur au current roster
-        /*  const newPlayer = {
-             player: `${playerToAdd}`, // L'ID du joueur à ajouter
-             statut: 'current',
-         }; */
-        team.teamCurrentRoster.push(newPlayer);
-
-        // Sauvegardez les modifications dans la base de données
-        await team.save();
-
-        res.json({ message: 'Joueur ajouté au current roster avec succès' });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send(err);
-    }
-};
-
-//fonction pour ajouter un joueur sub au current roster
-export const addSubPlayerToCurrentRoster = async (req, res) => {
-    try {
-        // Vérifiez d'abord si l'équipe existe
-        const team = await Team.findById(req.params.id);
-
-        if (!team) {
-            return res.status(404).json({ message: "Équipe non trouvée" });
-        }
-
-        // Vérifiez si le current roster est complet (limite de 7 joueurs)
-        if (team.teamCurrentRoster.length >= 7) {
-            return res.status(400).json({ message: "Le current roster est complet" });
-        }
-
-        // Recherchez le joueur à ajouter en fonction de son ID
-        const playerToAdd = await Player.findById(req.params.playerid);
-
-        if (!playerToAdd) {
-            return res.status(404).json({ message: "Joueur à ajouter non trouvé" });
-        }
-
-        // Ajoutez le joueur au current roster
         const newPlayer = {
-            player: playerToAdd, // L'ID du joueur à ajouter
-            statut: 'sub',
+            player: playerToAdd
         };
         team.teamCurrentRoster.push(newPlayer);
 
@@ -136,8 +96,7 @@ export const addSubPlayerToCurrentRoster = async (req, res) => {
         console.error(err);
         res.status(500).send(err);
     }
+    //si ajouté le meme joueur interdire
 };
 
-
-
-
+//

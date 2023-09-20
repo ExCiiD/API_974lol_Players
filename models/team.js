@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { Localisation } from './localisation.js';
 import { Player } from './player.js';
+
 
 
 
@@ -17,7 +17,7 @@ const teamSchema = new mongoose.Schema({
     },
     teamLocalisation: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: Localisation,
+        ref: 'Localisation',
     },
     teamAchievements: {
         //winner ou top 2/3 d'un event, donc recuperer l'id d'un event ??

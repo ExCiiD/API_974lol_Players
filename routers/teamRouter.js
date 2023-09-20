@@ -1,5 +1,5 @@
 import express from 'express';
-import { addTeam, getTeam, updateTeam, deleteTeam, addPlayerToCurrentRoster } from '../controllers/teamController.js'; 
+import { addTeam, getTeam, updateTeam, deleteTeam, addPlayerToCurrentRoster, } from '../controllers/teamController.js'; 
 
 export const teamRouter = new express.Router();
 
@@ -31,10 +31,4 @@ teamRouter.delete('/teams/:teamname', async (req, res) => {
 teamRouter.post('/teams/:id/roster/add/:playerid', async (req, res) => {
     // Appel du contrôleur
     addPlayerToCurrentRoster(req, res);
-});
-
-// Route pour ajouter un joueur au current roster en utilisant son ID
-teamRouter.post('/teams/:id/roster/add/sub/:playerid', async (req, res) => {
-    // Appel du contrôleur
-    addSubPlayerToCurrentRoster(req, res);
 });

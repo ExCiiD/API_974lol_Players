@@ -1,5 +1,5 @@
 import express from 'express';
-import { addPlayer, getPlayer, updatePlayer, deletePlayer } from '../controllers/playerController.js';
+import { addPlayer, getPlayer, updatePlayer, deletePlayer, getPlayersFromTeam } from '../controllers/playerController.js';
 export const playerRouter = new express.Router();
 
 //Route pour creer un nouveau joueur
@@ -12,6 +12,12 @@ playerRouter.post('/players', async (req, res) => {
 playerRouter.get('/players', async (req, res) => {
     //controler
     getPlayer(req, res);
+});
+
+//route pour chercher tous les joueurs d'une équipe
+playerRouter.delete('/players/:idteam', async (req, res) => {
+    //controler
+    getPlayersFromTeam(req, res);
 });
 
 //route pour update un joueur
