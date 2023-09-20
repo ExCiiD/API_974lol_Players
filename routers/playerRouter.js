@@ -15,7 +15,7 @@ playerRouter.get('/players', async (req, res) => {
 });
 
 //route pour chercher tous les joueurs d'une équipe
-playerRouter.delete('/players/:idteam', async (req, res) => {
+playerRouter.get('/players/:teamid', async (req, res) => {
     //controler
     getPlayersFromTeam(req, res);
 });
